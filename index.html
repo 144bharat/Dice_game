@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0px;
+            margin: 0px;
+        }
+        #container{
+            display: flex;
+            color: white;
+            font-size: 32px;
+            justify-content: center;
+            padding: 40px 40px;
+            border-radius: 6px;  
+            border: 2px solid black;     
+            width: 600px;   
+        }
+        .child{
+            margin: 20px;
+            height: 100px;
+            width: 100px;
+            background-color: red;
+            text-align: center;
+            font-weight: 800;
+            border-radius: 6px;
+            animation-name: spin;
+            animation-duration: 50ms;
+            animation-iteration-count:10;
+            animation-timing-function: linear;
+            filter: drop-shadow(0 0 0.75rem crimson);
+        }
+
+        .ans{
+            margin: 20px;
+            height: 100px;
+            width: 100px;
+            text-align: center;
+            background-color: burlywood;
+            font-size: 24px;
+            font-weight: 800;
+            border-radius: 6px;
+            filter: drop-shadow(0 0 0.75rem burlywood);
+        }
+        #button2{
+            color: white;
+            background-color: teal;
+            font-size: 24px;
+            font-weight: 800;
+            text-align: center;
+            border-radius: 6px;
+            margin-top: 20px;
+            filter: drop-shadow(0 0 0.75rem teal);
+        }
+
+        @keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}
+        h1{
+            color: teal;
+            border-radius: 6px;
+            background-color: rgba(129, 125, 125, 0.226);
+            text-align: center;
+
+        }
+        
+    </style>
+</head>
+<body>
+    <h1>Dice Roll !</h1>
+    <center><div class="ans"></div></center>
+<center><div id="container"> 
+    <div id="div1" class="child"></div>
+    <div id="div2" class="child"></div>
+    <div id="div3" class="child"></div>
+</div></center>
+<center><button id="button2">Press me!</button></center>
+
+</body>
+</html>
+<script>
+    let butt=document.querySelector("#button2");
+    butt.addEventListener('click',function(butt){
+
+        let d1=document.querySelector("#div1");
+    let d2=document.querySelector("#div2");
+    let d3=document.querySelector("#div3");
+    let d4=document.querySelector(".ans");
+    let win=0;
+    let run=0;
+    let los=0;
+    d1.innerText=(Math.floor(Math.random()*6)+1);
+    let first= +(d1.innerText);
+    d2.innerText=(Math.floor(Math.random()*6)+1);
+    let second= +(d2.innerText);
+    d3.innerText=(Math.floor(Math.random()*6)+1);
+    let third= +(d3.innerText);
+    
+    let arr=[first,second,third];
+    arr.sort();
+    win=arr[2];
+    run=arr[1];
+    lose=arr[0];
+
+if(first>second)
+{
+    if(first>third)
+    {
+        d4.innerText="first wins";
+        
+    }
+    else{
+        d4.innerText="third wins";
+        
+    }
+}
+else{
+    if(second>third)
+    {
+        d4.innerText="second wins";
+        
+    }
+    else
+    {
+        d4.innerText="third wins";
+       
+    }
+}
+    //console.log(win);
+    //console.log(run);
+   //console.log(lose);
+
+    switch(win)
+    {
+        
+        case first:d1.style.background="green";
+        break;
+        case second:d2.style.background="green";
+        break;
+        case third:d3.style.background="green";
+        break;
+    }
+    switch(run)
+    {
+        case first:d1.style.background="yellow";
+        break;
+        case second:d2.style.background="yellow";
+        break;
+        case third:d3.style.background="yellow";
+        break;
+    }
+    switch(lose)
+    {
+        case first:d1.style.background="red";
+        break;
+        case second:d2.style.background="red";
+        break;
+        case third:d3.style.background="red";
+        break;
+    }
+if(first==second)
+{
+    // 4 4 4
+    d1.style.background="blue";
+    d2.style.background="blue";
+    d4.innerText="third wins";
+}else if(first==third)
+{
+    d1.style.background="blue";
+    d3.style.background="blue";
+    d4.innerText="second wins";
+}
+else if(second==third)
+{
+    d2.style.background="blue";
+    d3.style.background="blue";
+    d4.innerText="first wins";
+}else if(first==second && first==third)
+{
+    d1.style.background="blue";
+    d2.style.background="blue";
+    d3.style.background="blue";
+    d4.innerText="draw match";
+}
+
+    })
+</script>
+
